@@ -958,3 +958,15 @@ require('lazy').setup({
 -- add keybind for neotree
 vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle NeoTree' })
 
+-- add ruff keybind for formatting
+require('lspconfig').ruff_lsp.setup {
+  init_options = {
+    settings = {
+      -- Ruff language server settings go here
+    },
+  },
+}
+
+vim.keymap.set('n', '<leader>f', function()
+  vim.lsp.buf.format { name = 'ruff_lsp' }
+end, { desc = 'Format current buffer with Ruff' })
